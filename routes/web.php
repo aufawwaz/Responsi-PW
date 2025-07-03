@@ -11,17 +11,6 @@ Route::get('/komik/create', [KomikController::class, 'create'])->name('komik.cre
 Route::get('/komik/table', [KomikController::class, 'table'])->name('komik.table');
 Route::post('/komik', [KomikController::class, 'store'])->name('komik.store');
 
-Route::get('/komik/{id}/edit-name', [KomikController::class, 'editName'])->name('komik.editName');
-Route::put('/komik/{id}/update-name', [KomikController::class, 'updateName'])->name('komik.updateName');
-
-Route::get('/komik/{id}/edit-genre', [KomikController::class, 'editGenre'])->name('komik.editGenre');
-Route::put('/komik/{id}/update-genre', [KomikController::class, 'updateGenre'])->name('komik.updateGenre');
-
-Route::get('/komik/{id}/edit-cover', [KomikController::class, 'editCover'])->name('komik.editCover');
-Route::put('/komik/{id}/update-cover', [KomikController::class, 'updateCover'])->name('komik.updateCover');
-
-Route::delete('/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');
-
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
@@ -33,3 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+Route::get('/komik/{id}', [KomikController::class, 'show'])->name('komik.show');
+Route::get('/komik/{id}/edit', [KomikController::class, 'edit'])->name('komik.edit');
+Route::put('/komik/{id}', [KomikController::class, 'update'])->name('komik.update');
+Route::delete('/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');

@@ -18,6 +18,7 @@ class Komik extends Model
         'title',
         'genre',
         'cover',
+        'sinopsis',
     ];
 
     /**

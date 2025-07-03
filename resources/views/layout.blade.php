@@ -22,8 +22,7 @@
             <div id="nav-menu" class="w-full lg:flex lg:items-center lg:w-auto hidden">
                 <ul class="lg:flex lg:space-x-6 mt-4 lg:mt-0 text-lg text-gray-700">
                     <li><a href="{{ route('index') }}" class="block py-2 hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 font-medium' : '' }}">Beranda</a></li>
-                    <li><a href="{{ route('komik.table') }}" class="block py-2 hover:text-blue-600">Table</a></li>
-                    <li><a href="{{ route('komik.create') }}" class="block py-2 hover:text-blue-600">Tambah Komik</a></li>
+                    <li><a href="{{ route('komik.table') }}" class="block py-2 hover:text-blue-600">Daftar Komik</a></li>
                 </ul>
 
                 @if (Route::is('index'))

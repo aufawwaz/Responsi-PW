@@ -26,8 +26,9 @@
                 <img src="{{ asset('assets/avatars/' . $user->avatar) }}" class="w-16 h-16 rounded-full mt-5 border border-gray-300">
             @endif
         </div>
+        <a href="{{ route('index') }}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition">Kembali</a>
         <button type="submit"
-            class="bg-blue-600 text-white mt-3 px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition">Simpan
+            class="bg-blue-600 text-white px-4 py-2 ml-2 rounded-lg hover:bg-blue-700 transition">Simpan
         </button>
     </form>
 </div>

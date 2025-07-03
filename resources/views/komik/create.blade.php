@@ -41,6 +41,13 @@
                        accept="image/*">
             </div>
 
+            <div>
+                <label class="block mb-3 font-medium text-gray-700">Sinopsis</label>
+                <textarea name="sinopsis"
+                    class="form-input w-full py-2 px-3 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                    rows="4"></textarea>
+            </div>
+
             <div class="flex gap-3">
                 <button type="submit"
                         class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition">
