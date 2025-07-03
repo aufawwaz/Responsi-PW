@@ -14,7 +14,6 @@ class KomikController extends Controller
             ->when($request->genre, fn($q) => $q->where('genre', $request->genre))
             ->paginate(9);
 
-        // Ambil semua genre unik untuk filter
         $genres = Komik::distinct()->pluck('genre')->filter();
 
         return view('index', compact('komikList', 'genres'));
@@ -45,70 +44,6 @@ class KomikController extends Controller
         ]);
 
         return redirect()->route('komik.index')->with('success', 'Komik berhasil ditambahkan!');
-    }
-
-    public function editName($id)
-    {
-        $komik = Komik::findOrFail($id);
-        return view('komik.edit_name', compact('komik'));
-    }
-
-    public function updateName(Request $request, $id)
-    {
-        $request->validate(['title' => 'required|string|max:255']);
-        $komik = Komik::findOrFail($id);
-        $komik->title = $request->title;
-        $komik->save();
-
-        return redirect()->route('komik.index')->with('success', 'Nama komik diperbarui!');
-    }
-
-    public function editGenre($id)
-    {
-        $komik = Komik::findOrFail($id);
-        return view('komik.edit_genre', compact('komik'));
-    }
-
-    public function updateGenre(Request $request, $id)
-    {
-        $request->validate(['genre' => 'required|string|max:100']);
-        $komik = Komik::findOrFail($id);
-        $komik->genre = $request->genre;
-        $komik->save();
-
-        return redirect()->route('komik.index')->with('success', 'Genre komik diperbarui!');
-    }
-
-    public function editCover($id)
-    {
-        $komik = Komik::findOrFail($id);
-        return view('komik.edit_cover', compact('komik'));
-    }
-
-    public function updateCover(Request $request, $id)
-    {
-        $request->validate([
-            'cover' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
-        $komik = Komik::findOrFail($id);
-
-        $coverName = time() . '.' . $request->cover->extension();
-        $request->cover->move(public_path('assets/covers'), $coverName);
-
-        $komik->cover = $coverName;
-        $komik->save();
-
-        return redirect()->route('komik.index')->with('success', 'Cover komik diperbarui!');
-    }
-
-    public function destroy($id)
-    {
-        $komik = Komik::findOrFail($id);
-        if (file_exists(public_path('assets/covers/' . $komik->cover))) {
-            unlink(public_path('assets/covers/' . $komik->cover));
-        }
-        $komik->delete();
-        return redirect()->route('komik.index')->with('success', 'Komik dihapus!');
     }
 
     public function table()
@@ -151,5 +86,15 @@ class KomikController extends Controller
     {
         $komik = Komik::findOrFail($id);
         return view('komik.edit', compact('komik'));
+    }
+
+    public function destroy($id)
+    {
+        $komik = Komik::findOrFail($id);
+        if (file_exists(public_path('assets/covers/' . $komik->cover))) {
+            unlink(public_path('assets/covers/' . $komik->cover));
+        }
+        $komik->delete();
+        return redirect()->route('komik.index')->with('success', 'Komik dihapus!');
     }
 }
