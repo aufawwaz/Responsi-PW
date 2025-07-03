@@ -15,7 +15,7 @@ class KomikController extends Controller
             ->paginate(9);
 
         // Ambil semua genre unik untuk filter
-        $genres = Komik::distinct()->pluck('genre');
+        $genres = Komik::distinct()->pluck('genre')->filter();
 
         return view('index', compact('komikList', 'genres'));
     }
